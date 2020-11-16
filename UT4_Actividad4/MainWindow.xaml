@@ -18,7 +18,7 @@
                     Value="5" />
         </Style>
         <Style TargetType="Grid"
-               x:Key="imagenGrid">
+               x:Key="memeGrid">
             <Setter Property="Background"
                     Value="Pink" />
             <Setter Property="HorizontalAlignment"
@@ -29,20 +29,27 @@
                     Value="{Binding ElementName=altoSlider, Path=Value}" />
         </Style>
         <Style TargetType="TextBlock"
-               x:Key="imagenTextBlock">
-            <Setter Property="HorizontalAlignment"
-                    Value="Center" />
+               x:Key="memeTextBlock">
             <Setter Property="FontSize"
                     Value="36" />
             <Setter Property="FontFamily"
                     Value="Impact" />
             <Setter Property="Foreground"
                     Value="White" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="TextWrapping"
+                    Value="Wrap" />
             <Setter Property="Effect">
                 <Setter.Value>
                     <DropShadowEffect />
                 </Setter.Value>
             </Setter>
+        </Style>
+        <Style TargetType="WrapPanel"
+               x:Key="memeWrapPanel">
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
         </Style>
         <Style TargetType="Slider">
             <Setter Property="Minimum"
@@ -70,13 +77,11 @@
         <StackPanel>
             <DockPanel>
                 <TextBlock>Texto Superior</TextBlock>
-                <TextBox x:Name="textoSuperiorTextBox"
-                         Text="{Binding ElementName=textoSuperiorTextBlock, Path=Text, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBox x:Name="textoSuperiorTextBox">Texto Superior</TextBox>
             </DockPanel>
             <DockPanel>
                 <TextBlock>Texto Inferior</TextBlock>
-                <TextBox x:Name="textoInferiorTextBox"
-                         Text="{Binding ElementName=textoInferiorTexBlock, Path=Text, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBox x:Name="textoInferiorTextBox">Texto Inferior</TextBox>
             </DockPanel>
             <StackPanel Style="{StaticResource sliderStackPanel}">
                 <TextBlock>Alto</TextBlock>
@@ -88,8 +93,7 @@
             </StackPanel>
             <DockPanel>
                 <TextBlock>Imagen</TextBlock>
-                <TextBox x:Name="imagenTextBox"
-                         Text="{Binding ElementName=imagenImage, Path=Source, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBox x:Name="imagenTextBox"></TextBox>
             </DockPanel>
             <DockPanel>
                 <TextBlock>Borde</TextBlock>
@@ -101,17 +105,20 @@
                     BorderThickness="{Binding ElementName=borderCheckBox, Path=IsChecked, Converter={StaticResource conversor}}"
                     BorderBrush="Black">
                 <Grid x:Name="imagenGrid"
-                      Style="{StaticResource imagenGrid}">
-                    <Image x:Name="imagenImage" 
-                        Stretch="Fill"></Image>
-                    <TextBlock x:Name="textoSuperiorTextBlock"
-                               Style="{StaticResource imagenTextBlock}">Texto Superior</TextBlock>
-                    <TextBlock x:Name="textoInferiorTexBlock"
-                               Style="{StaticResource imagenTextBlock}"
-                               VerticalAlignment="Bottom">Texto Inferior</TextBlock>
-
+                      Style="{StaticResource memeGrid}">
+                    <Image Stretch="Fill"
+                           Source="{Binding ElementName=imagenTextBox, Path=Text, UpdateSourceTrigger=PropertyChanged}"></Image>
+                    <TextBlock Style="{StaticResource memeTextBlock}"
+                               Text="{Binding ElementName=textoSuperiorTextBox, Path=Text, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                    <TextBlock Style="{StaticResource memeTextBlock}"
+                               Text="{Binding ElementName=textoInferiorTextBox, Path=Text, UpdateSourceTrigger=PropertyChanged}"
+                               VerticalAlignment="Bottom"></TextBlock>
                 </Grid>
             </Border>
+            <Image Source="guardar.png"
+                   Height="100"
+                   Width="100"
+                   Margin="10,0,10,10"></Image>
         </StackPanel>
     </ScrollViewer>
 </Window>
