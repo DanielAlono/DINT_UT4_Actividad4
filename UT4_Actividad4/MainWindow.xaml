@@ -103,7 +103,7 @@
                 <Grid x:Name="imagenGrid"
                       Style="{StaticResource imagenGrid}">
                     <Image x:Name="imagenImage" 
-                        Stretch="UniformToFill"></Image>
+                        Stretch="Fill"></Image>
                     <TextBlock x:Name="textoSuperiorTextBlock"
                                Style="{StaticResource imagenTextBlock}">Texto Superior</TextBlock>
                     <TextBlock x:Name="textoInferiorTexBlock"
